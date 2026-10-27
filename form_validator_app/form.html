@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Registration</title>
+  <style>
+    /* Basic Styling */
+    :root {
+      --bg-color: #f4f6f9;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --border-color: #cccccc;
+      --primary-color: #0066cc;
+      --error-color: #d9534f;
+      --success-bg: #d4edda;
+      --success-color: #155724;
+    }
+
+    body.dark-mode {
+      --bg-color: #1e1e2e;
+      --card-bg: #2b2b3d;
+      --text-color: #f1f1f1;
+      --border-color: #44445c;
+      --primary-color: #4da6ff;
+      --error-color: #ff6b6b;
+      --success-bg: #1c3b2b;
+      --success-color: #85e3a7;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .error {
+      color: var(--error-color);
+      font-size: 0.85rem;
+      margin-top: 4px;
+      display: none;
+    }
+
+    #success-message {
+      display: none;
+      background-color: var(--success-bg);
+      color: var(--success-color);
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #member-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .member-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .remove-btn {
+      background-color: var(--error-color);
+      padding: 6px 12px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Member Registration</h1>
+    <button id="dark-mode-btn">Dark Mode</button>
+  </header>
+
+  <!-- Success Message Box -->
+  <div id="success-message"></div>
+
+  <!-- Registration Form -->
+  <section class="card">
+    <form id="member-form" novalidate>
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" placeholder="John Doe">
+        <span class="error" id="name-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com">
+        <span class="error" id="email-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role *</label>
+        <select id="role" name="role">
+          <option value="">-- Select a Role --</option>
+          <option value="Developer">Developer</option>
+          <option value="Designer">Designer</option>
+          <option value="Project Manager">Project Manager</option>
+          <option value="QA Engineer">QA Engineer</option>
+        </select>
+        <span class="error" id="role-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="bio">Short Bio</label>
+        <textarea id="bio" name="bio" rows="3" placeholder="Brief description..."></textarea>
+        <span class="error" id="bio-error"></span>
+      </div>
+
+      <button type="submit">Add Member</button>
+    </form>
+  </section>
+
+  <!-- Member Directory List -->
+  <section class="card">
+    <h2 id="member-counter">Total Members: 0</h2>
+    <ul id="member-list"></ul>
+  </section>
+
+  <!-- Link JavaScript file -->
+  <script src="form.js"></script>
+</body>
+</html>
